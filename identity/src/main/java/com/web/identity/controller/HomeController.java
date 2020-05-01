@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
     
     @GetMapping(value = {"/","/home"})
-    @ResponseBody
-    public String index(Model model){
-        model.addAttribute("name","RAY");
+    public String index(){
         return "index";
     }
 }
