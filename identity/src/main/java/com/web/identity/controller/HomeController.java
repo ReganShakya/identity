@@ -22,7 +22,8 @@ public class HomeController {
     
     private static final Logger LOG = Logger.getLogger(HomeController.class);
     @GetMapping(value = {"/","/home"})
-    public String index(){
+    public String index(){        
+        LOG.info("User logged in.");
         return "index";
     }
 }

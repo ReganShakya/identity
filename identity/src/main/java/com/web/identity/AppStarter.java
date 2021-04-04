@@ -18,9 +18,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class AppStarter {
     public static void main(String[] args){
         SpringApplication.run(AppStarter.class, args);
-        SpringApplication.run(AppStarter.class, args);
         String log4jConfPath = "etc/log4j2.properties";
         PropertyConfigurator.configure(log4jConfPath);
+
         
         BCryptPasswordEncoder encoder=
                 new BCryptPasswordEncoder();

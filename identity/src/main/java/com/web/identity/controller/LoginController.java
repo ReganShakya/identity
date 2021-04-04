@@ -22,6 +22,7 @@ public class LoginController {
     final static Logger LOG = Logger.getLogger(LoginController.class);
     @GetMapping
     public String login(){
+        LOG.info("Login page.");
         return "login";
     }
     
