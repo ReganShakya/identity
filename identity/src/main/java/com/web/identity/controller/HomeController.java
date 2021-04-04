@@ -5,6 +5,7 @@
  */
 package com.web.identity.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping
 public class HomeController {
     
+    private static final Logger LOG = Logger.getLogger(HomeController.class);
     @GetMapping(value = {"/","/home"})
     public String index(){
         return "index";

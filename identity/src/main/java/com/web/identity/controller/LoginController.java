@@ -6,6 +6,7 @@
 package com.web.identity.controller;
 
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = "/login")
 public class LoginController {
+    
+    final static Logger LOG = Logger.getLogger(LoginController.class);
     @GetMapping
     public String login(){
         return "login";
