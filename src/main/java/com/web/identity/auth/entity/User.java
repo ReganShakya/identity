@@ -28,6 +28,10 @@ public class User extends MasterEntity{
     private String email;
     @Column(name = "password")
     private String password;
+    @Column(name = "contact_no")
+    private String contactNo;
+    @Column(name = "address")
+    private String address;
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     @ManyToOne
     private Role role;
@@ -109,6 +113,22 @@ public class User extends MasterEntity{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
     
     
