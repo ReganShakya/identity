@@ -25,6 +25,8 @@ public class Karigar extends  MasterEntity{
     private String address;
     @Column(name = "status")
     private boolean status;
+    @Column(name = "note")
+    private String note;
     
     public Karigar() {
     }
@@ -81,5 +83,12 @@ public class Karigar extends  MasterEntity{
         this.status = status;
     }  
 
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 
 }

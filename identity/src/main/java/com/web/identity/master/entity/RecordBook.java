@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -16,14 +18,16 @@ import javax.persistence.Table;
 @Table(name="tbl_record_book")
 public class RecordBook extends MasterEntity{
     
-    @Column(name = "date")
+    
+    @Column(name = "date",insertable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @Column(name = "product")    
     private String product;
     @Column(name = "qty")
     private int qty;
-    @Column(name = "koora_price")
-    private int kooraPrice;
+    @Column(name = "kooraa_price")
+    private int kooraaPrice;
     @Column(name = "kaataa_price")
     private int kaataaPrice;
     @Column(name = "kooraa_by")
@@ -36,8 +40,6 @@ public class RecordBook extends MasterEntity{
     private String soldTo;
     @Column(name = "status")
     private String status;
-    @Column(name = "investment")
-    private int investment;
     @Column(name = "selling_price")
     private int sellingPrice;
     @Column(name = "note")
@@ -75,14 +77,14 @@ public class RecordBook extends MasterEntity{
         this.qty = qty;
     }
 
-    public int getKooraPrice() {
-        return kooraPrice;
+    public int getKooraaPrice() {
+        return kooraaPrice;
     }
 
-    public void setKooraPrice(int kooraPrice) {
-        this.kooraPrice = kooraPrice;
-    }
-
+    public void setKooraaPrice(int kooraaPrice) {
+        this.kooraaPrice = kooraaPrice;
+    }    
+    
     public int getKaataaPrice() {
         return kaataaPrice;
     }
@@ -129,14 +131,6 @@ public class RecordBook extends MasterEntity{
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public int getInvestment() {
-        return investment;
-    }
-
-    public void setInvestment(int investment) {
-        this.investment = investment;
     }
 
     public int getSellingPrice() {
