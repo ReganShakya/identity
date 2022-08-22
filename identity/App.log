@@ -46,3 +46,14 @@
 2022-08-22 07:08:51 INFO  LoginController:25 - Login page.
 2022-08-22 07:08:51 INFO  LoginController:25 - Login page.
 2022-08-22 07:08:59 INFO  HomeController:49 - User logged in.
+2022-08-22 07:09:29 INFO  HomeController:49 - User logged in.
+2022-08-22 07:09:30 INFO  HomeController:49 - User logged in.
+2022-08-22 07:09:35 INFO  LoginController:25 - Login page.
+2022-08-22 07:09:37 INFO  LoginController:25 - Login page.
+2022-08-22 07:09:44 INFO  CustomAuthenticationFilter:41 - Username is : regan
+2022-08-22 07:09:44 INFO  CustomAuthenticationFilter:42 - Password is : identitypassword
+2022-08-22 07:10:49 INFO  LoginController:25 - Login page.
+2022-08-22 07:11:30 INFO  CustomAuthenticationFilter:41 - Username is : regan
+2022-08-22 07:11:30 INFO  CustomAuthenticationFilter:42 - Password is : identitypassword
+2022-08-22 07:11:33 INFO  CustomAuthenticationFilter:41 - Username is : regan
+2022-08-22 07:11:33 INFO  CustomAuthenticationFilter:42 - Password is : identitypassword
