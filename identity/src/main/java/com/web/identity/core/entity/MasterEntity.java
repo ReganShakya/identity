@@ -29,5 +29,12 @@ public class MasterEntity {
     public void setId(int id) {
         this.id = id;
     }
+
+    public MasterEntity() {
+    }
+
+    public MasterEntity(int id) {
+        this.id = id;
+    }
     
 }
