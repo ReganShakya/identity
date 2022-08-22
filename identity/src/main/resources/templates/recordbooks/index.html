@@ -42,7 +42,7 @@
                     <td th:text="${record.soldTo}"></td>    
                     <td th:text="${record.status}"></td>  
                     <td th:text="${record.note}"></td>   
-                    <td th:text="${record.kooraaPrice} + ${record.kaataaPrice}"></td>                  
+                    <td th:text="(${record.kooraaPrice} + ${record.kaataaPrice})*${record.qty}"></td>                  
                     <td th:text="${record.sellingPrice}"></td>
                     <td>
                         <a th:href="@{'/'+${pageURI}+'/edit/'+${record.id}}" class="btn btn-warning btn-xs" title="Edit Task">

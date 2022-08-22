@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.CreationTimestamp;
 
 /**
  *
@@ -20,7 +21,7 @@ public class RecordBook extends MasterEntity{
     
     
     @Column(name = "date",insertable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date date;
     @Column(name = "product")    
     private String product;
