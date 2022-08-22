@@ -7,6 +7,7 @@ package com.web.identity.auth.configuration;
 
 import com.web.identity.auth.entity.handler.LoginSuccessHandler;
 import com.web.identity.auth.provider.UserAuthService;
+import com.web.identity.filters.CustomAuthenticationFilter;
 import com.web.identity.filters.JwtRequestFilter;
 import com.web.identity.utils.JwtUtil;
 import javax.sql.DataSource;
@@ -23,6 +24,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 /**
  *
@@ -44,31 +47,41 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
     
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//       http.authorizeRequests()
-////               .antMatchers("/").permitAll()
-//               .anyRequest()
-//               .authenticated()
-//               .and().formLogin()
-//               .loginPage("/login")
-//               .usernameParameter("username")
-//               .passwordParameter("password")               
-//               .successHandler(successHandler)
-//               .permitAll()
-//               .and().logout().permitAll()
-//               .invalidateHttpSession(true);
-//    }
-    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       http.csrf().disable()
-               .authorizeRequests().antMatchers("/authenticate").permitAll()
-               .anyRequest().authenticated()
-               .and().sessionManagement()
-               .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-       http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+       http.authorizeRequests()
+//               .antMatchers("/").permitAll()
+               .anyRequest()
+               .authenticated()
+               .and().formLogin()
+               .loginPage("/login")
+               .usernameParameter("username")
+               .passwordParameter("password")
+               .successHandler(successHandler)
+               .permitAll()
+               .and().logout().permitAll()
+               .invalidateHttpSession(true);
+                http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
     }
+    
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//       http.csrf().disable()
+//               .authorizeRequests().antMatchers("/authenticate").permitAll()
+//               .anyRequest().authenticated()
+//               .and().sessionManagement()
+//               .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//       http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//    }
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable();
+//        http.sessionManagement().sessionCreationPolicy(STATELESS);
+//        http.authorizeRequests().anyRequest().permitAll();
+//        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
+//    }
+
 
     @Override 
     public void configure(WebSecurity web) throws Exception {
