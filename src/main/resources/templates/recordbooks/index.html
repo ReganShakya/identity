@@ -2,62 +2,97 @@
 
 <div class="box">
     <div class="box-header with-border">
-        <a th:href="@{'/'+${pageURI}+'/create'}" class="btn btn-primary btn-xs" title="Create new Task">
+        <a th:href="@{'/'+${pageURI}+'/create'}" class="add-btn" title="Add new User">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </div>
 
-    <div class="box-body">
-        <table class="table table-bordered table-striped table-hover">
-            <thead>                
-                <tr>
-                    <th>Id</th>
-                    <th>Date</th>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Kooraa Price</th>
-                    <th>Kaataa Price</th>
-                    <th>Kooraa By</th>
-                    <th>Kaataa By</th>
-                    <th>Sold By</th>
-                    <th>Sold To</th>
-                    <th>Status</th>
-                    <th>Note</th>
-                    <th>Investment</th>
-                    <th>Selling Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>            
-                <tr th:each="record:${records}">
-                    <td th:text="${record.id}"></td>
-                    <td th:text="${record.date}"></td>
-                    <td th:text="${record.product}"></td>
-                    <td th:text="${record.qty}"></td>
-                    <td th:text="${record.kooraaPrice}"></td>
-                    <td th:text="${record.kaataaPrice}"></td>
-                    <td th:text="${record.kooraaBy}"></td>
-                    <td th:text="${record.kaataaBy}"></td>   
-                    <td th:text="${record.soldBy}"></td>
-                    <td th:text="${record.soldTo}"></td>    
-                    <td th:text="${record.status}"></td>  
-                    <td th:text="${record.note}"></td>   
-                    <td th:text="(${record.kooraaPrice} + ${record.kaataaPrice})*${record.qty}"></td>                  
-                    <td th:text="${record.sellingPrice}"></td>
-                    <td>
-                        <a th:href="@{'/'+${pageURI}+'/edit/'+${record.id}}" class="btn btn-warning btn-xs" title="Edit Task">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </a>
-                        <a th:href="@{'/'+${pageURI}+'/delete/'+${record.id}}" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger btn-xs" title="Delete Task">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </a>
-                    </td>
-                </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </div>
+
+    <div th:replace="recordbooks/table"></div>
 </div>
 
 
+<div th:replace="users/components/createModal"></div>
+
+
 <div th:replace="shared/footer"></div>
+
+
+<script>
+    $(document).ready(function () {
+
+        $('.add-btn').on('click', function () {
+
+            var $dialog = $('#form-dialog');
+            $dialog.find('.modal-title')
+                    .html('Add User');
+            $dialog.modal();
+            return false;
+        });
+        
+        
+        $('#lastName').bind('keypress blur', function(){
+            $('#userName').val($('#firstName').val()+$(this).val());
+        });
+       
+        $('#pwd1, #pwd2').bind('keypress blur', function () {
+            if ($('#pwd1').val() != $('#pwd2').val()) {
+                
+                $('#message').html('Passwords Doesn\'t Match').css('color', 'red');
+                $('#message').attr({class:'red'});
+                $('#save').attr({disabled:true});
+                $('#pwd').val("password");
+            } else {
+                
+                $('#save').attr({disabled:false});
+                $('#message').html('').css('color', 'green');
+                $('#message').attr({class:'green'});
+                $('#pwd').val($('#pwd1').val());
+            }
+        });
+    
+        //Save from modal
+        $('#app-form').on('submit',function(){
+            $.post('/users/json',$(this).serialize(),function(data){
+                if(data==='success'){
+                    $.get('/users/table', function(data){
+                        $('#view-table').html(data);
+                    });
+                    $('#form-dialog').modal('hide');
+                }
+            });
+            return false;
+        });  
+        
+        //Edit from modal
+        $('#view-table').on('click','.edit-btn', function(){
+            var $id = $(this).attr('rel');
+            $.getJSON('/users/json/'+$id, function(data){
+                $('input[name=firstName]').val(data.firstName);
+                $('input[name=lastName]').val(data.lastName);
+                $('input[name=userName]').val(data.userName);
+                $('input[name=email]').val(data.email);
+                $('input[name=contactNo]').val(data.contactNo);
+                $('input[name=address]').val(data.address);
+                $('input[name=password1]').val(data.password);
+                $('input[name=password2]').val(data.password);
+                $('input[name=id]').val(data.id);
+                $('input[name=status]').val(data.status);
+                
+                $("#role").each(function(){
+                    $(this).prepend('<option value="0" selected>Please Select</option>'); //add please select option
+                    $(this).val(data.role.id) // set it as selected
+                });
+                return false; 
+            });
+            var $dialog = $('#form-dialog');
+            $dialog.find('.modal-tile')
+                    .html('Edit User');
+            $dialog.modal();
+            return false;            
+        });
+        
+    });    
+    
+    
+</script>

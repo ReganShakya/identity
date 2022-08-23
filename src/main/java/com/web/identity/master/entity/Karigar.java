@@ -13,10 +13,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="tbl_karigar")
 public class Karigar extends  MasterEntity{
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "last_name")
-    private String lastName;
+    
+    @Column(name = "full_name")
+    private String fullName;
     @Column(name = "email")
     private String email;    
     @Column(name = "contact_no")
@@ -35,21 +34,13 @@ public class Karigar extends  MasterEntity{
         this.id=id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }    
 
     public String getEmail() {
         return email;

@@ -1,0 +1,34 @@
+
+    <div class="box-body">
+        <table id="view-table" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Cash To</th>
+                    <th>Cash From</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="record:${records}">
+                    <td th:text="${record.id}"></td>
+                    <td th:text="${record.date}"></td>
+                    <td th:text="${record.description}"></td>
+                    <td th:text="${record.cashTo}"></td>
+                    <td th:text="${record.cashFrom}"></td>              
+                    <td th:text="${record.amount}"></td>
+                    <td>
+                        <a th:href="@{'/'+${pageURI}+'/edit/'+${record.id}}" th:rel="${record.id}" class="edit-btn" title="Edit User details">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a th:href="@{'/'+${pageURI}+'/delete/'+${record.id}}" th:rel="${record.id}" onclick="return confirm('Are you sure to delete?')" title="Delete Task">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
