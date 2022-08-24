@@ -1,4 +1,3 @@
-/identity/target/
-/identity/App.log
-/identity/Error.log
+App.log
+Error.log
 /target/
