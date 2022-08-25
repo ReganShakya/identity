@@ -17,10 +17,11 @@ public abstract class SiteController {
     protected String pageTitle;
     protected String activeMenu;
     protected String pageURI;
+    final String title = "Record | ";
     
     @ModelAttribute
     public void globalVariables(Model model){
-        model.addAttribute("pageTitle", pageTitle);
+        model.addAttribute("pageTitle", title + pageTitle);
         model.addAttribute("activeMenu", activeMenu);
         model.addAttribute("pageURI", pageURI);
     }

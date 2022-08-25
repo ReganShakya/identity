@@ -138,3 +138,9 @@
 2022-08-24 18:07:57 INFO  LoginController:25 - Login page.
 2022-08-24 18:08:08 INFO  HomeController:28 - User logged in.
 2022-08-24 18:10:43 INFO  HomeController:28 - User logged in.
+2022-08-24 19:49:07 INFO  LoginController:25 - Login page.
+2022-08-24 19:49:17 INFO  LoginController:25 - Login page.
+2022-08-24 19:49:27 INFO  HomeController:28 - User logged in.
+2022-08-25 09:56:21 INFO  LoginController:25 - Login page.
+2022-08-25 09:56:29 INFO  HomeController:28 - User logged in.
+2022-08-25 09:57:16 INFO  HomeController:28 - User logged in.
