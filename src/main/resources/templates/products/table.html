@@ -1,0 +1,37 @@
+
+    <div class="box-body">
+        <table id="view-table" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                    <th>Investment</th>
+                    <th>Selling</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="record:${records}">
+                    <td th:text="${record.id}"></td>
+                    <td th:text="${record.date}"></td>
+                    <td th:text="${record.product}"></td>
+                    <td th:text="${record.status}"></td>
+                    <td th:text="(${record.kooraaPrice} + ${record.kaataaPrice}) * ${record.qty}"></td>
+<!--                    <td th:text="${#dates.format(record.createdDate,'YYY-MM-dd hh:mm:ss')}"></td>-->
+                        
+                    <td th:text="${record.sellingPrice}"></td>               
+                    <td th:text="${record.note}"></td>
+                    <td>
+                        <a th:href="@{'/'+${pageURI}+'/edit/'+${record.id}}" th:rel="${record.id}" class="edit-btn" title="Edit User details">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a th:href="@{'/'+${pageURI}+'/delete/'+${record.id}}" th:rel="${record.id}" onclick="return confirm('Are you sure to delete?')" title="Delete Task">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
